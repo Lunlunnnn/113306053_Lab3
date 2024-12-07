@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>113306053_Lab3_Number Guessing Game</title>
+</head>
+<body>
+	<div align="center">
+		<h1>113306053_Lab3_Number Guessing Game</h1>
+	</div>
+	<div id="result" align="center"></div>
+	<script>
+		var num = Math.floor(Math.random() * 100) + 1;
+		var min = 1;
+		var max = 100;
+		var count = 0;
+		
+		while (count < 7) {
+			var left = 7 - count;
+			var input = window.prompt("請輸入 " + min + " ~ " + max + " 之間的數字，還剩下 " + left + " 次機會:");
+			
+			if (!input || isNaN(input)) {
+				alert('輸入有誤');
+				continue;
+			}
+
+			var inputNumber = parseInt(input);
+
+			if (inputNumber < min || inputNumber > max) {
+				alert('輸入有誤');
+				continue;
+			}
+
+			count++;
+
+			if (inputNumber > num) {
+				max = inputNumber;
+			} else if (inputNumber < num) {
+				min = inputNumber;
+			} else {
+				alert('答對了');
+				document.getElementById("result").innerHTML = '<div align = "center"><img src="correct.jpg" alt="correct"></div>';
+				break;
+			}
+
+			if (count === 7) {
+				alert('剩餘作答次數為0，正確答案是：' + num);
+				document.getElementById("result").innerHTML = '<div align = "center"><img src="wrong.jpg" alt="wrong"></div>';
+			}
+		}
+	</script>
+</body>
+</html>
